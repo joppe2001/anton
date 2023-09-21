@@ -13,7 +13,7 @@ const apolloConfig = {
 export default defineNuxtConfig({
   devtools: true,
   // Add Apollo module 
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/apollo', '@pinia/nuxt'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/apollo', '@pinia/nuxt', '@nuxt/image'],
 
   // Add Apollo config
 
@@ -26,5 +26,23 @@ export default defineNuxtConfig({
   server: {
     port: 3000,
     host: 'localhost'
+  },
+  image: {
+    screens: {
+      'xs': 320,
+      'sm': 640,
+      'md': 768,
+      'lg': 1024,
+      'xl': 1280,
+      'xxl': 1536,
+      '2xl': 1536
+    },
+    domains: ['https://antonbosscher-anton-bosscher.prepr.io/', 'https://localhost:3000'],
+    providers: {
+      storyblok: {
+        provider: 'prepr',
+        dir: '~/assets/images'
+      }
+    }
   }
 })

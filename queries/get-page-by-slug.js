@@ -6,7 +6,18 @@ export const GetPageBySlug = gql`
       _id
       title
       _slug
-
+      page_header { 
+        _id
+        header
+        banner_image { 
+          _id
+          url
+        }
+        header_icon { 
+          _id
+          url
+        }
+      }
       # Retrieve the stack and two components: 
       # Page Header and Image and Text 
       stack {

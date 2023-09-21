@@ -1,3 +1,5 @@
 <template>
-	<organismsDynamicPage slug="home" />
+	<div>
+		<organismsDynamicPage slug="home" />
+	</div>
 </template>

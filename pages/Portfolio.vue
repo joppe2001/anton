@@ -1,3 +1,3 @@
 <template>
-  <OrganismsDynamicPage slug="portfolio" />
+  <organismsDynamicPage slug="portfolio" />
 </template>
