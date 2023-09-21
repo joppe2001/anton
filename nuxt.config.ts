@@ -37,7 +37,7 @@ export default defineNuxtConfig({
       'xxl': 1536,
       '2xl': 1536
     },
-    domains: ['https://antonbosscher-anton-bosscher.prepr.io/', 'https://localhost:3000'],
+    domains: ['https://antonbosscher-anton-bosscher.prepr.io/', 'https://localhost:3000', 'https://master--splendorous-ganache-f70dde.netlify.app/'],
     providers: {
       storyblok: {
         provider: 'prepr',
