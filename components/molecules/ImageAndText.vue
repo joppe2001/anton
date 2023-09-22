@@ -30,7 +30,7 @@
 
 	console.log(props.data);
 </script>
-<style scoped>
+<style scoped lang="scss">
 	.image-text {
 		display: flex;
 		align-items: center;

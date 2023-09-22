@@ -9,7 +9,6 @@
 		<!-- Render stack components -->
 		<component
 			v-for="(element, index) in stack"
-			v-if="useStack"
 			:key="element._id"
 			:is="getComponent(element.__typename)"
 			:data="element"
@@ -34,12 +33,14 @@
 	import PageHeader from "../molecules/PageHeader";
 	import ImageAndText from "../molecules/ImageAndText";
 	import TextComponent from "../atoms/TextComponent";
+	import ImageGrid from "../molecules/ImageGrid.vue";
 
 	// Set up the components using an object for faster lookup
 	const components = {
 		PageHeader,
 		ImageAndText,
 		TextComponent,
+		ImageGrid,
 	};
 
 	const getComponent = (name) => components[name] || null;

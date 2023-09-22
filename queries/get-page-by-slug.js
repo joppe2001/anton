@@ -46,6 +46,13 @@ export const GetPageBySlug = gql`
           _id
           paragraph_color
         }
+        ... on ImageGrid {
+          _id
+          asset_grid {
+            url(width: 800)
+            name
+          }
+        }
       }
     }
   }

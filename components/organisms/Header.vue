@@ -14,7 +14,7 @@
     <!-- Navigation Links -->
     <nav class="nav-links">
       <nuxt-link to="/">Home</nuxt-link>
-      <nuxt-link to="/about">About</nuxt-link>
+      <nuxt-link to="/portfolio">Portfolio</nuxt-link>
       <nuxt-link to="/services">Services</nuxt-link>
       <nuxt-link to="/contact">Contact</nuxt-link>
     </nav>
@@ -40,8 +40,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5rem;
     background-color: #272829;
+    padding: 1.5rem;
 
     .business-info {
       position: absolute;

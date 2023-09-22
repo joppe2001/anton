@@ -1,5 +1,5 @@
 <template>
- <div>
-  niet de home page
- </div>
+	<div>
+		<organismsDynamicPage slug="home" />
+	</div>
 </template>
