@@ -43,11 +43,18 @@ console.log('grid', props.data);
     height: 50vh;
     overflow: hidden;
 
-
     .swiper-container,
     .swiper-cards {
         width: 30%;
         height: 100%;
+
+        @media (max-width: 768px) {
+            width: 70%;
+        }
+
+        @media (max-width: 480px) {
+            width: 80%;
+        }
     }
 
     .swiper-slide {
@@ -89,9 +96,12 @@ console.log('grid', props.data);
                 margin: 0;
                 font-size: 2rem;
                 font-weight: lighter;
+
+                @media (max-width: 768px) {
+                    font-size: 1.5rem;
+                }
             }
         }
     }
 }
 </style>
-<!--  -->
