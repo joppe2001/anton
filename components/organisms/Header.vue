@@ -25,12 +25,12 @@
   const props = defineProps({
     data: {
       type: Object,
-      required: true
+      required: true,
     },
     index: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   });
 </script>
 
@@ -66,7 +66,7 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
-      color: #D8D9DA;
+      color: #d8d9da;
 
       @media (min-width: 768px) {
         justify-content: center;

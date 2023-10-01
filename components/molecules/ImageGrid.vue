@@ -71,6 +71,19 @@
 				}
 			}
 		}
+    .swiper-container,
+    .swiper-cards {
+        width: 30%;
+        height: 100%;
+
+        @media (max-width: 768px) {
+            width: 70%;
+        }
+
+        @media (max-width: 480px) {
+            width: 80%;
+        }
+    }
 
 		.swiper-container,
 		.swiper-cards {
@@ -101,6 +114,7 @@
 				opacity: 0.6;
 			}
 
+<<<<<<< HEAD
 			.img-text {
 				position: absolute;
 				height: 100%;
@@ -121,4 +135,19 @@
 			}
 		}
 	}
+=======
+            p {
+                padding: 0.5rem;
+                margin: 0;
+                font-size: 2rem;
+                font-weight: lighter;
+
+                @media (max-width: 768px) {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
+>>>>>>> 04f1d52e527cec7daa67acf00b37b0b6a83ed341
 </style>
