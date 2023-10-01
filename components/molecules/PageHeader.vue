@@ -20,7 +20,7 @@
 		index: {
 			type: Number,
 			required: true,
-		},
+		}
 	});
 
 	console.log(props.data);

@@ -13,7 +13,7 @@ const apolloConfig = {
 export default defineNuxtConfig({
   devtools: true,
   // Add Apollo module 
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/apollo', '@pinia/nuxt', '@nuxt/image', 'nuxt-swiper'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/apollo', '@pinia/nuxt', '@nuxt/image', 'nuxt-swiper', 'nuxt-simple-sitemap'],
 
   // Add Apollo config
 

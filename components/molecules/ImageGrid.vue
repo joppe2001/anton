@@ -1,97 +1,124 @@
 <template>
-    <div class="wrapper">
-        <Swiper class="swiper-cards" :modules="[SwiperEffectCoverflow]" :slides-per-view="1" :loop="false"
-            :effect="'coverflow'" :centeredSlides="true"
-            :coverflow-effect="{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: false }">
-            <SwiperSlide v-for="element in assetGrid" :key="element.url">
-                <div class="swiper-zoom-container grain">
-                    <NuxtImg :src="element.url" :alt="element.__typeName" />
-                    <div class="img-text">
-                        <p>{{ element.name }}</p>
-                    </div>
-                </div>
-            </SwiperSlide>
-        </Swiper>
-    </div>
+	<div class="wrapper">
+		<Swiper
+			class="swiper-cards"
+			:modules="[SwiperEffectCoverflow]"
+			:slides-per-view="1"
+			:loop="false"
+			:effect="'coverflow'"
+			:centeredSlides="true"
+			:coverflow-effect="{
+				rotate: 50,
+				stretch: 0,
+				depth: 100,
+				modifier: 1,
+				slideShadows: false,
+			}"
+		>
+			<SwiperSlide v-for="element in assetGrid" :key="element.url">
+				<div class="swiper-zoom-container grain">
+					<NuxtImg :src="element.url" :alt="element.__typeName" />
+					<div class="img-text">
+						<p>{{ element.name }}</p>
+					</div>
+				</div>
+			</SwiperSlide>
+		</Swiper>
+	</div>
 </template>
 
 <script setup>
+	const props = defineProps({
+		data: {
+			type: Object,
+			required: true,
+		},
+		index: {
+			type: Number,
+			required: true,
+		},
+	});
 
-const props = defineProps({
-    data: {
-        type: Object,
-        required: true,
-    },
-    index: {
-        type: Number,
-        required: true,
-    },
-});
+	const assetGrid = computed(() => {
+		return props.data.asset_grid;
+	});
 
-const assetGrid = computed(() => {
-    return props.data.asset_grid;
-});
-
-console.log('grid', props.data);
+	console.log("grid", props.data);
 </script>
 
 <style scoped lang="scss">
-.wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    overflow: hidden;
+	@import "../../mixins/for-device.scss";
+	.wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 50vh;
+		overflow: hidden;
 
+		@include for-device(mobile) {
+			.swiper-container,
+			.swiper-cards {
+				width: 100%;
+                height: 100%;
+			}
 
-    .swiper-container,
-    .swiper-cards {
-        width: 30%;
-        height: 100%;
-    }
+			.swiper-slide {
+				.swiper-zoom-container {
+					img {
+						object-fit: cover;
+						width: 100vh;
+					}
+				}
+			}
+		}
 
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+		.swiper-container,
+		.swiper-cards {
+			width: 30%;
+			height: 100%;
+		}
 
-        .swiper-zoom-container {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+		.swiper-slide {
+			text-align: center;
+			font-size: 18px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
-            &:hover .img-text {
-                opacity: 0;
-            }
-        }
+			.swiper-zoom-container {
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
-        img {
-            object-fit: cover;
-            opacity: 0.6;
-        }
+				&:hover .img-text {
+					opacity: 0;
+				}
+			}
 
-        .img-text {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            opacity: 1;
-            transition: opacity 0.2s ease-in-out;
+			img {
+				object-fit: cover;
+				opacity: 0.6;
+			}
 
-            p {
-                padding: 0.5rem;
-                margin: 0;
-                font-size: 2rem;
-                font-weight: lighter;
-            }
-        }
-    }
-}
+			.img-text {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				opacity: 1;
+				transition: opacity 0.2s ease-in-out;
+
+				p {
+					padding: 0.5rem;
+					margin: 0;
+					font-size: 2rem;
+					font-weight: lighter;
+				}
+			}
+		}
+	}
 </style>
-<!--  -->
