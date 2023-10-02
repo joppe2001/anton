@@ -3,7 +3,7 @@
     <div class="richText" :style="{ height: height }">
       <h1>{{ data.title }}</h1>
       <p :style="{ '-webkit-line-clamp': clampValue }">{{ data.paragraph }}</p>
-      <button v-if="showButton" @click="toggleClamp">{{ clampText }}</button>
+      <button v-if="showButton" @click="toggleClamp" class="readMore">{{ clampText }}</button>
     </div>
   </div>
 </template>
@@ -22,21 +22,21 @@
   });
 
   const clampValue = ref(3);
-  const showButton = ref(true);
+  const showButton = ref(false);
   const height = ref('20vh');
   const wrapper = ref(null);
 
   const toggleClamp = () => {
-    if (clampValue.value === 3) {
-      clampValue.value = 'unset';
-      showButton.value = false;
-      height.value = `${wrapper.clientHeight}px`;
-    } else {
-      clampValue.value = 3;
-      showButton.value = true;
-      height.value = '20vh';
-    }
-  };
+  if (clampValue.value === 3) {
+    clampValue.value = 'unset';
+    showButton.value = false;
+    height.value = 'auto';
+  } else {
+    clampValue.value = 3;
+    showButton.value = true;
+    height.value = 'auto';
+  }
+};
 
   const clampText = computed(() => {
     return clampValue.value === 3 ? 'Read More' : 'Read Less';
@@ -53,7 +53,21 @@
 
   onMounted(() => {
     height.value = `${wrapper.clientHeight}px`;
+    if (process.browser) {
+      showButton.value = window.innerWidth < 768;
+      window.addEventListener('resize', handleResize);
+    }
   });
+
+  onBeforeUnmount(() => {
+    if (process.browser) {
+      window.removeEventListener('resize', handleResize);
+    }
+  });
+
+  const handleResize = () => {
+    showButton.value = window.innerWidth < 768;
+  };
 </script>
 
 <style scoped lang="scss">
@@ -77,8 +91,11 @@
     .richText {
       text-align: center;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
       margin: 1rem 0;
       border-radius: 10px;
+      position: relative;
 
       h1 {
         font-size: 2rem;
@@ -89,20 +106,29 @@
         font-size: 1rem;
         color: #666;
         text-align: center;
-        margin-bottom: 1.5rem;
+        margin-top: 1rem;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
-      button {
+      button.readMore {
         padding: 0.5rem 1rem;
         background-color: #007bff;
         color: #fff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        display: none;
+
+        @include for-device('mobile') {
+          display: block;
+          position: absolute;
+          bottom: -18%;
+          left: 50%;
+          transform: translateX(-50%);
+        } 
       }
     }
   }
