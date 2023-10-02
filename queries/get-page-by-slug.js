@@ -53,6 +53,18 @@ export const GetPageBySlug = gql`
             name
           }
         }
+        ... on RichText {
+          _id
+          title
+          paragraph
+        }
+        ... on WideImage {
+          _id
+          asset {
+            url(width: 1600)
+            name
+          }
+        }
       }
     }
   }

@@ -13,7 +13,7 @@
       :is="getComponent(element.__typename)"
       :data="element"
       :index="index"
-      :url="element.url"
+      :url="element?.url"
     ></component>
 
     <!-- Render page component -->
@@ -34,6 +34,8 @@
   import ImageAndText from '../molecules/ImageAndText';
   import TextComponent from '../atoms/TextComponent';
   import ImageGrid from '../molecules/ImageGrid.vue';
+  import RichText from '../molecules/RichText.vue';
+  import WideImage from '../atoms/WideImage.vue';
 
   // Set up the components using an object for faster lookup
   const components = {
@@ -41,6 +43,8 @@
     ImageAndText,
     TextComponent,
     ImageGrid,
+    RichText,
+    WideImage,
   };
 
   const getComponent = name => components[name] || null;
@@ -58,12 +62,14 @@
     slug: props.slug,
   });
 
+  console.log(data);
+
   const stack = ref([]);
   const pageHeader = ref(null);
   const pageComponent = ref(null);
 
   if (data && data.value.Page) {
-    if (data.value.Page.stack) {
+    if (data?.value?.Page?.stack) {
       stack.value = data.value.Page.stack;
     }
     if (data.value.Page.page_header) {

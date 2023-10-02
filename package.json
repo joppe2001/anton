@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "https": "nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
