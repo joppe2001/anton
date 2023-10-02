@@ -27,9 +27,9 @@
 			required: true,
 		},
 	});
-
-	console.log(props.data);
+	// hello world
 </script>
+
 <style scoped lang="scss">
 	.image-text {
 		display: flex;
