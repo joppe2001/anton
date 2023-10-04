@@ -27,22 +27,22 @@
     <!-- Links for desktop -->
     <div v-if="!menuOpen" class="page-header__container desktop-links">
       <div class="links">
-        <NuxtLink class="button-89" to="/">home</NuxtLink>
-        <NuxtLink class="button-89" to="portfolio">portfolio</NuxtLink>
-        <NuxtLink class="button-89" to="about">about</NuxtLink>
+        <NuxtLink class="button" to="/">home</NuxtLink>
+        <NuxtLink class="button" to="portfolio">portfolio</NuxtLink>
+        <NuxtLink class="button" to="about">about</NuxtLink>
       </div>
     </div>
 
     <!-- Dropdown links for mobile -->
     <div v-if="menuOpen" class="page-header__container mobile-links">
       <div class="links" ref="linkRef">
-        <NuxtLink class="button-89" to="/" @click="menuOpen = false"
+        <NuxtLink class="button-87" to="/" @click="menuOpen = false"
           >home</NuxtLink
         >
-        <NuxtLink class="button-89" to="portfolio" @click="menuOpen = false"
+        <NuxtLink class="button-87" to="portfolio" @click="menuOpen = false"
           >portfolio</NuxtLink
         >
-        <NuxtLink class="button-89" to="about" @click="menuOpen = false"
+        <NuxtLink class="button-87" to="about" @click="menuOpen = false"
           >about</NuxtLink
         >
       </div>
@@ -131,6 +131,46 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 1rem 2rem;
 
+    .button {
+      background: #fff;
+      border: none;
+      padding: 13px 20px;
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 600;
+      width: auto;
+      text-transform: uppercase;
+      cursor: pointer;
+      transform: skew(-10deg);
+    }
+
+    a {
+      display: inline-block;
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 100%;
+      left: 0;
+      background: rgb(20, 20, 20);
+      opacity: 0;
+      z-index: -1;
+      transition: all 0.5s;
+    }
+
+    .button:hover {
+      color: #fff;
+    }
+
+    .button:hover::before {
+      left: 0;
+      right: 0;
+      opacity: 1;
+    }
+
     .company-logo {
       position: absolute;
       left: 2rem;
@@ -151,48 +191,10 @@
       }
     }
 
-    .button-89 {
-      /* given button styles */
-      --b: 1px;
-      --s: 0.3em;
-      --color: #373b44;
-      padding: calc(0.3em + var(--s)) calc(0.9em + var(--s));
-      color: var(--color);
-      --_p: var(--s);
-      background: conic-gradient(
-          from 90deg at var(--b) var(--b),
-          #0000 90deg,
-          var(--color) 0
-        )
-        var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
-        calc(100% - var(--b) - 2 * var(--_p));
-      transition: 0.3s linear, color 0s, background-color 0s;
-      outline: var(--b) solid #0000;
-      outline-offset: 0.6em;
-      font-size: 14px;
-      border: 0;
-      text-decoration: none; /* important for NuxtLink */
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-    }
-
-    .button-89:hover,
-    .button-89:focus-visible {
-      --_p: 0px;
-      outline-color: var(--color);
-      outline-offset: 0.05em;
-    }
-
-    .button-89:active {
-      background: var(--color);
-      color: #fff;
-    }
-
     @media (max-width: 768px) {
       .company-logo {
         left: 1rem;
-        height: 50px;
+        height: 35px;
       }
     }
   }
@@ -257,11 +259,10 @@
     width: auto;
     border-radius: 0 0 10px 10px;
   }
-  .page-header__container.mobile-links .links .button-89 {
+  .page-header__container.mobile-links .links .button-87 {
     opacity: 0;
     transform: translateX(100px);
-}
-
+  }
 
   .links {
     display: flex;
@@ -270,10 +271,12 @@
 
   @media (max-width: 768px) {
     .page-header {
-      height: 80px;
+      height: 60px;
     }
     .hamburger {
       display: flex; /* show hamburger on mobile */
+      position: absolute;
+      top: 10%;
     }
 
     .links {
@@ -282,7 +285,9 @@
       background-color: #dfcdc3;
       padding: 1rem;
       border-radius: 0 0 5px 5px;
-      .button-89 {
+      position: absolute;
+      right: 0;
+      button {
         // margin: 0.2rem 0;
         background-color: #719192 !important;
         border-radius: 5px;
