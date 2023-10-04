@@ -25,7 +25,7 @@
     </button>
 
     <!-- Links for desktop -->
-    <div v-if="!menuOpen" class="page-header__container desktop-links">
+    <div class="page-header__container desktop-links">
       <div class="links">
         <NuxtLink class="button" to="/">home</NuxtLink>
         <NuxtLink class="button" to="portfolio">portfolio</NuxtLink>
