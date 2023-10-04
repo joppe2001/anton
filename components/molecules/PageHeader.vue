@@ -1,96 +1,308 @@
 <!-- ./components/PageHeader.vue -->
 
 <template>
-	<div class="page-header">
-		<div class="page-header__container">
-			<h1 v-if="data.heading">{{ data.heading }}</h1>
-			<p v-if="data.text">{{ data.text }}</p>
-			<NuxtImg :src="data.image[0].url" alt="Header Image" />
-			<button v-if="data.cta_label">{{ data.cta_label }}</button>
-		</div>
-	</div>
+  <div class="page-header">
+    <img
+      v-if="data.logo"
+      :src="data.logo.url"
+      alt="Company Logo"
+      class="company-logo"
+    />
+
+    <!-- Hamburger menu for mobile -->
+    <button
+      @click="toggleMenu"
+      class="hamburger"
+      :class="{ 'is-active': menuOpen }"
+    >
+      <svg viewBox="0 0 32 32">
+        <path
+          class="line line-top-bottom"
+          d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+        ></path>
+        <path class="line" d="M7 16 27 16"></path>
+      </svg>
+    </button>
+
+    <!-- Links for desktop -->
+    <div v-if="!menuOpen" class="page-header__container desktop-links">
+      <div class="links">
+        <NuxtLink class="button-89" to="/">home</NuxtLink>
+        <NuxtLink class="button-89" to="portfolio">portfolio</NuxtLink>
+        <NuxtLink class="button-89" to="about">about</NuxtLink>
+      </div>
+    </div>
+
+    <!-- Dropdown links for mobile -->
+    <div v-if="menuOpen" class="page-header__container mobile-links">
+      <div class="links" ref="linkRef">
+        <NuxtLink class="button-89" to="/" @click="menuOpen = false"
+          >home</NuxtLink
+        >
+        <NuxtLink class="button-89" to="portfolio" @click="menuOpen = false"
+          >portfolio</NuxtLink
+        >
+        <NuxtLink class="button-89" to="about" @click="menuOpen = false"
+          >about</NuxtLink
+        >
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
-	const props = defineProps({
-		data: {
-			type: Object,
-			required: true,
-		},
-		index: {
-			type: Number,
-			required: true,
-		}
-	});
+  const props = defineProps({
+    data: {
+      type: Object,
+      required: true,
+    },
+  });
 
-	console.log(props.data);
+  const menuOpen = ref(false);
+
+  const linkRef = ref(null);
+
+  const toggleMenu = () => {
+    menuOpen.value = !menuOpen.value;
+
+    if (menuOpen.value) {
+      // Give Vue's rendering mechanism a bit of time to update the DOM
+      // Then trigger the animation.
+      nextTick(() => {
+        animateLinks();
+      });
+    }
+  };
+
+  //use the webAnimation API to animate the links in the mobile menu
+  const animateLinks = () => {
+    const links = linkRef.value.children;
+    const stagger = 100; // delay in milliseconds
+    const duration = 300; // duration in milliseconds
+
+    for (let i = 0; i < links.length; i++) {
+      links[i].animate(
+        [
+          {
+            opacity: 0,
+            transform: 'translateX(100px)',
+          },
+          {
+            opacity: 1,
+            transform: 'translateX(0)',
+          },
+        ],
+        {
+          delay: stagger * i,
+          duration: duration,
+          fill: 'forwards',
+        }
+      );
+    }
+  };
+
+  onMounted(() => {
+    console.log(linkRef.value);
+    if (menuOpen.value) {
+      animateLinks();
+    }
+  });
+  watch(linkRef, newVal => {
+    if (newVal) {
+      console.log(linkRef.value);
+      if (menuOpen.value) {
+        animateLinks();
+      }
+    }
+  });
 </script>
 
 <style scoped lang="scss">
-	.page-header {
+  .page-header {
     width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-		&__container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			padding: 2rem;
-			background-color: #f9f9f9;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			margin: 1rem 0;
-			border-radius: 10px;
-			width: 30%;
-			img {
-				border-radius: 8px;
-				margin-bottom: 1.5rem;
-			}
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
 
-			h1 {
-				font-size: 2rem;
-				color: #333;
-				margin-bottom: 1rem;
-			}
+    .company-logo {
+      position: absolute;
+      left: 2rem;
+      height: 50px;
+      border-radius: 50%;
+    }
 
-			p {
-				font-size: 1rem;
-				color: #666;
-				text-align: center;
-				margin-bottom: 1.5rem;
-			}
+    &__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
 
-			button {
-				padding: 0.5rem 1rem;
-				background-color: #007bff;
-				color: #fff;
-				border: none;
-				border-radius: 4px;
-				font-size: 1rem;
-				cursor: pointer;
-				transition: background-color 0.3s ease;
+      .links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+    }
 
-				&:hover {
-					background-color: #0056b3;
-				}
-			}
+    .button-89 {
+      /* given button styles */
+      --b: 1px;
+      --s: 0.3em;
+      --color: #373b44;
+      padding: calc(0.3em + var(--s)) calc(0.9em + var(--s));
+      color: var(--color);
+      --_p: var(--s);
+      background: conic-gradient(
+          from 90deg at var(--b) var(--b),
+          #0000 90deg,
+          var(--color) 0
+        )
+        var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
+        calc(100% - var(--b) - 2 * var(--_p));
+      transition: 0.3s linear, color 0s, background-color 0s;
+      outline: var(--b) solid #0000;
+      outline-offset: 0.6em;
+      font-size: 14px;
+      border: 0;
+      text-decoration: none; /* important for NuxtLink */
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
 
-			@media (max-width: 768px) {
-				padding: 1rem;
+    .button-89:hover,
+    .button-89:focus-visible {
+      --_p: 0px;
+      outline-color: var(--color);
+      outline-offset: 0.05em;
+    }
 
-				h1 {
-					font-size: 1.5rem;
-				}
+    .button-89:active {
+      background: var(--color);
+      color: #fff;
+    }
 
-				p {
-					font-size: 0.875rem;
-				}
+    @media (max-width: 768px) {
+      .company-logo {
+        left: 1rem;
+        height: 50px;
+      }
+    }
+  }
+  .hamburger {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    display: none; /* hidden by default */
 
-				button {
-					padding: 0.375rem 0.75rem;
-				}
-			}
-		}
-	}
+    svg .line {
+      fill: none;
+      stroke: #3c4245;
+      stroke-width: 2;
+    }
+  }
+
+  .hamburger {
+    cursor: pointer;
+  }
+
+  .hamburger input {
+    display: none;
+  }
+
+  .hamburger svg {
+    height: 3em;
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .line {
+    fill: none;
+    stroke: white;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .line-top-bottom {
+    stroke-dasharray: 12 63;
+  }
+
+  .hamburger.is-active svg {
+    transform: rotate(-45deg);
+  }
+
+  .hamburger.is-active svg .line-top-bottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
+  }
+
+  .page-header__container.desktop-links {
+    display: block; /* visible by default */
+  }
+
+  .page-header__container.mobile-links {
+    display: none; /* hidden by default */
+    position: absolute;
+    right: 1rem;
+    top: 100%;
+    width: auto;
+    border-radius: 0 0 10px 10px;
+  }
+  .page-header__container.mobile-links .links .button-89 {
+    opacity: 0;
+    transform: translateX(100px);
+}
+
+
+  .links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      height: 80px;
+    }
+    .hamburger {
+      display: flex; /* show hamburger on mobile */
+    }
+
+    .links {
+      //   margin-top: 1rem;
+      flex-direction: column;
+      background-color: #dfcdc3;
+      padding: 1rem;
+      border-radius: 0 0 5px 5px;
+      .button-89 {
+        // margin: 0.2rem 0;
+        background-color: #719192 !important;
+        border-radius: 5px;
+        background: none;
+        --color: white;
+      }
+    }
+
+    .page-header__container.desktop-links {
+      display: none; /* hide desktop links on mobile */
+    }
+
+    .page-header__container.mobile-links {
+      display: block; /* show mobile links dropdown on mobile */
+      background-color: transparent;
+    }
+
+    .company-logo {
+      left: 1rem;
+      height: 40px; /* slightly smaller logo for mobile */
+    }
+  }
 </style>

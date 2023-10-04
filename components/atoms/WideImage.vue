@@ -1,5 +1,5 @@
 <template>
-  <NuxtImg :src="data.asset.url" />
+  <NuxtImg :src="data.asset?.url" />
 </template>
 
 <script setup>

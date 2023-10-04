@@ -1,10 +1,10 @@
-<!-- DynamicPage.vue -->
+DynamicPage.vue
 <template>
   <div v-if="loading">Loading...</div>
   <div v-else-if="error">Error loading data.</div>
   <div v-else>
     <!-- Render Header component if page_header exists -->
-    <organismsHeader v-if="pageHeader" :data="pageHeader" />
+    <MoleculesPageHeader v-if="pageHeader" :data="pageHeader" />
 
     <!-- Render stack components -->
     <component

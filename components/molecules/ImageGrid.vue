@@ -3,9 +3,9 @@
         <Swiper class="swiper-cards" :modules="[SwiperEffectCoverflow]" :slides-per-view="1" :loop="false"
             :effect="'coverflow'" :centeredSlides="true"
             :coverflow-effect="{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: false }">
-            <SwiperSlide v-for="element in assetGrid" :key="element.url">
+            <SwiperSlide v-for="element in assetGrid" :key="element?.url">
                 <div class="swiper-zoom-container grain">
-                    <NuxtImg :src="element.url" :alt="element.__typeName" />
+                    <NuxtImg :src="element?.url" :alt="element.__typeName" />
                     <div class="img-text">
                         <p>{{ element.name }}</p>
                     </div>
