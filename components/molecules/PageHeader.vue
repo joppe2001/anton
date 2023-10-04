@@ -141,7 +141,7 @@
       width: auto;
       text-transform: uppercase;
       cursor: pointer;
-      transform: skew(-10deg);
+      transform: skew(-15deg);
     }
 
     a {
@@ -257,11 +257,68 @@
     right: 1rem;
     top: 100%;
     width: auto;
-    border-radius: 0 0 10px 10px;
   }
   .page-header__container.mobile-links .links .button-87 {
     opacity: 0;
     transform: translateX(100px);
+	backdrop-filter: blur(0);
+
+    &:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+    &:focus {
+	  transform: translateY(-10px);
+	}
+  }
+
+  .page-header__container.mobile-links .links .button-87::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    left: 0;
+    background: rgb(20, 20, 20);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.5s;
+  }
+
+  .page-header__container.mobile-links .links .button-87:hover::before,
+  .page-header__container.mobile-links .links .button-87:focus::before {
+    left: 0;
+    right: 0;
+    opacity: 1;
+  }
+
+  .page-header__container.mobile-links .links .button-87 {
+    background: #fff;
+    border: none;
+    padding: 13px 20px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    width: auto;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .page-header__container.mobile-links .links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    backdrop-filter: blur(10px);
+	// backdrop blur with color
+	background-color: rgba(22, 18, 18, 0.5);
+    padding: 1rem;
+    position: absolute;
+    right: 0;
+    button {
+      background-color: #719192 !important;
+      background: none;
+      --color: white;
+    }
   }
 
   .links {
@@ -282,9 +339,7 @@
     .links {
       //   margin-top: 1rem;
       flex-direction: column;
-      background-color: #dfcdc3;
       padding: 1rem;
-      border-radius: 0 0 5px 5px;
       position: absolute;
       right: 0;
       button {
