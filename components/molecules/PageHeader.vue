@@ -30,6 +30,7 @@
         <NuxtLink class="button" to="/">home</NuxtLink>
         <NuxtLink class="button" to="portfolio">portfolio</NuxtLink>
         <NuxtLink class="button" to="about">about</NuxtLink>
+        <NuxtLink class="button" to="diensten">Diensten</NuxtLink>
       </div>
     </div>
 
@@ -233,7 +234,8 @@
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 3;
-    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    transition:
+      stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
       stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -264,15 +266,15 @@
   .page-header__container.mobile-links .links .button-87 {
     opacity: 0;
     transform: translateX(100px);
-	backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
 
     &:hover {
       color: #fff;
       transform: scale(1.1);
     }
     &:focus {
-	  transform: translateY(-10px);
-	}
+      transform: translateY(-10px);
+    }
   }
 
   .page-header__container.mobile-links .links .button-87::before {
@@ -312,8 +314,8 @@
     flex-direction: column;
     gap: 1rem;
     backdrop-filter: blur(10px);
-	// backdrop blur with color
-	background-color: rgba(22, 18, 18, 0.5);
+    // backdrop blur with color
+    background-color: rgba(22, 18, 18, 0.5);
     padding: 1rem;
     position: absolute;
     right: 0;
