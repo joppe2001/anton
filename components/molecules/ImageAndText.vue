@@ -11,7 +11,6 @@
 		<NuxtImg :src="data?.image[0]?.url" alt="Image and Text" />
 		<div>
 			<h2>{{ data.title }}</h2>
-			<p>{{ data.text }}</p>
 		</div>
 	</div>
 </template>
