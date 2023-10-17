@@ -1,3 +1,3 @@
 <template>
-  <organismsDynamicPage slug="conatct" />
+  <organismsDynamicPage slug="contact" />
 </template>
