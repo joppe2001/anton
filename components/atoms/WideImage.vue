@@ -17,5 +17,7 @@
         width: 100%;
         height: 20vh;
         object-fit: cover;
+        /* make sure the images look normal sized */
+        object-position: center;
     }
 </style>
