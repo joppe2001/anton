@@ -142,7 +142,7 @@
     .button {
       background: #fff;
       border: none;
-      padding: 13px 20px;
+      padding: 10px 20px;
       display: inline-block;
       font-size: 15px;
       font-weight: 600;
