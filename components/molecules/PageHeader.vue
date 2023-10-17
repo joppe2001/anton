@@ -31,6 +31,7 @@
         <NuxtLink class="button" to="portfolio">portfolio</NuxtLink>
         <NuxtLink class="button" to="diensten">Diensten</NuxtLink>
         <NuxtLink class="button" to="tarieven">Tarieven</NuxtLink>
+        <NuxtLink class="button" to="contact">Contact</NuxtLink>
       </div>
     </div>
 
@@ -48,6 +49,9 @@
         >
         <NuxtLink class="button-87" to="tarieven" @click="menuOpen = false"
           >Tarieven</NuxtLink
+        >
+        <NuxtLink class="button-87" to="contact" @click="menuOpen = false"
+          >Contact</NuxtLink
         >
       </div>
     </div>
