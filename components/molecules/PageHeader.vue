@@ -45,6 +45,9 @@
         <NuxtLink class="button-87" to="about" @click="menuOpen = false"
           >about</NuxtLink
         >
+        <NuxtLink class="button-87" to="diensten" @click="menuOpen = false"
+          >Diensten</NuxtLink
+        >
       </div>
     </div>
   </div>
