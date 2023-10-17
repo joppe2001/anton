@@ -77,7 +77,6 @@ console.log('grid', props.data);
 
         img {
             object-fit: cover;
-            opacity: 0.6;
         }
 
         .img-text {
